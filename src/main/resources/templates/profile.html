@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil</title>
+</head>
+<body>
+<h1>Profil de l'utilisateur</h1>
+<div th:if="${user != null}">
+    <p>Nom d'utilisateur : <span th:text="${user['username']}"></span></p>
+    <p>Prénom : <span th:text="${user['firstname']}"></span></p>
+    <p>Nom : <span th:text="${user['lastname']}"></span></p>
+    <p>Date de naissance : <span th:text="${user['birthDate']}"></span></p>
+    <p><img th:src="@{${user['profilePicture']}}" alt="Photo de profil"></p>
+</div>
+</body>
+</html>
