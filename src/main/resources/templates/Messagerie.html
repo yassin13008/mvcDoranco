@@ -19,5 +19,9 @@
     <p th:text="${mess.getMessageText()}"></p>
     <p th:text="${mess.getTimeStamp()}"></p>
   </div>
+  <h2>Auteur : John Doe</h2>
+  <form th:action="@{/profile/jdoe}" method="get">
+      <button type="submit">Voir le Profil</button>
+  </form>
 </body>
 </html>
