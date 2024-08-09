@@ -3,21 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Message</title>
+    <!-- Lien vers le CSS de Bootstrap pour le style de la modale -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-  <h1>Votre Message</h1>
-  <form action="#" th:action="@{/messagerie/msg}" th:object="${message}" method="post">
-      <p>Author:</p>
-      <input type="text" th:field="*{author}">
-      <p>Message:</p>
-      <input type="text" th:field="*{messageText}">
-      <input type="submit" value="Send">
-  </form>
-  <h1>Votre Messagerie</h1>
-  <div th:each="mess: ${messageList}">
+
+<!-- Bouton pour ouvrir la fenêtre modale de connexion -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+    Connexion
+</button>
+
+<h1>Votre Message</h1>
+<form action="#" th:action="@{/messagerie/msg}" th:object="${message}" method="post">
+    <p>Author:</p>
+    <input type="text" th:field="*{author}">
+    <p>Message:</p>
+    <input type="text" th:field="*{messageText}">
+    <input type="submit" value="Send">
+</form>
+<h1>Votre Messagerie</h1>
+<div th:each="mess: ${messageList}">
     <p th:text="${mess.getAuthor()}"></p>
     <p th:text="${mess.getMessageText()}"></p>
     <p th:text="${mess.getTimeStamp()}"></p>
-  </div>
+</div>
+
+<!-- Fenêtre modale pour la connexion -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Connexion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/api/auth/login}" method="post">
+                    <div class="form-group">
+                        <label for="email">Email :</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe :</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Connexion</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts Bootstrap et jQuery pour le fonctionnement de la modale -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 </body>
 </html>
