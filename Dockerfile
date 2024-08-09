@@ -8,6 +8,6 @@ ENV POSTGRES_DB=mypostgres_doranco
 
 # Exposer le port 5432 pour PostgreSQL
 EXPOSE 5432
-
 # Lancer PostgreSQL en utilisant l'entrée de commande par défaut
 CMD ["postgres"]
+
