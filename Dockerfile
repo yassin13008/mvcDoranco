@@ -4,6 +4,7 @@ FROM postgres:latest
 ENV POSTGRES_USER=Doranco
 ENV POSTGRES_PASSWORD=Tigre
 ENV POSTGRES_DB=mypostgres_doranco
+
 # Exposer le port 5432 pour PostgreSQL
 EXPOSE 5432
 # Lancer PostgreSQL en utilisant l'entrée de commande par défaut
