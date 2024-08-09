@@ -1,42 +1,42 @@
 package com.doranco.mvcdoranco;
 
-import com.doranco.mvcdoranco.service.UserService;
+import com.doranco.mvcdoranco.service.AuthorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Map;
 
-public class UserServiceTest {
+public class AuthorServiceTest {
 
-    private UserService userService;
+    private AuthorService authorService;
 
     @BeforeEach
     public void setUp() {
-        userService = new UserService();
+        authorService = new AuthorService();
     }
 
     @Test
     public void testAddAndGetUser() {
-        userService.addUser("jdoe", "John", "Doe", "1990-01-01", "/images/jdoe.png");
+        authorService.addUser("jdoe", "John", "Doe", "1990-01-01", "john.doe@gmail.com");
 
-        Map<String, String> user = userService.getUser("jdoe");
+        Map<String, String> user = authorService.getUser("jdoe");
         assertNotNull(user);
         assertEquals("John", user.get("firstname"));
         assertEquals("Doe", user.get("lastname"));
         assertEquals("1990-01-01", user.get("birthDate"));
-        assertEquals("/images/jdoe.png", user.get("profilePicture"));
+        assertEquals("john.doe@gmail.com", user.get("email"));
 
         System.out.println("Nom d'utilisateur : " + "jdoe");
         System.out.println("Prénom : " + user.get("firstname"));
         System.out.println("Nom : " + user.get("lastname"));
-        System.out.println("Date de naissance : " + user.get("birthDate"));
-        System.out.println("Photo de profil : " + user.get("profilePicture"));
+        System.out.println("Date de naissance : " + user.get("dateOfBirth"));
+        System.out.println("Email : " + user.get("email"));
     }
 
     @Test
     public void testGetUserNotFound() {
-        Map<String, String> user = userService.getUser("nonexistent");
+        Map<String, String> user = authorService.getUser("nonexistent");
         assertNull(user);
         System.out.println("Utilisateur non trouvé pour le nom d'utilisateur 'nonexistent'");
     }

@@ -1,8 +1,7 @@
 package com.doranco.mvcdoranco;
 
-import com.doranco.mvcdoranco.TestSecurityConfig;
-import com.doranco.mvcdoranco.controller.UserProfileController;
-import com.doranco.mvcdoranco.service.UserService;
+import com.doranco.mvcdoranco.controller.AuthorProfileController;
+import com.doranco.mvcdoranco.service.AuthorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -22,15 +21,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
-@WebMvcTest(UserProfileController.class)
+@WebMvcTest(AuthorProfileController.class)
 @Import(TestSecurityConfig.class)
-public class UserProfileControllerTest {
+public class AuthorProfileControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserService userService;
+    private AuthorService authorService;
 
     @BeforeEach
     public void setUp() {
@@ -46,10 +45,10 @@ public class UserProfileControllerTest {
         mockUser.put("firstName", "John");
         mockUser.put("lastName", "Doe");
         mockUser.put("birthDate", "1990-01-01");
-        mockUser.put("profilePicture", "/images/jdoe.png");
+        mockUser.put("email", "john.doe@gmail.com");
 
         // Simule le comportement du service utilisateur
-        when(userService.getUser("jdoe")).thenReturn(mockUser);
+        when(authorService.getUser("jdoe")).thenReturn(mockUser);
 
         // Effectue une requête GET et vérifie la réponse
         mockMvc.perform(get("/profile/jdoe"))
